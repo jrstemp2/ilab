@@ -39,25 +39,45 @@ namespace IdentityExample1.Controllers
         public IActionResult Index()
         {
             ViewData["Name"] = User.Identity.Name;
+            
             ViewData["UID"] = _userManager.GetUserId(User);
-            return View();
+
+            
+
+            if (ViewData["Name"] != null)
+            {
+                int uId = int.Parse(_userManager.GetUserId(User));
+                IEnumerable<UserTask> utasks = dal.GetTasks(uId);
+                ViewData["UTasks"] = utasks;
+                return View();
+            }
+            else
+            {
+                return View();
+            }
         }
 
 
         //Add Task Get
         public IActionResult AddForm()
         {
+            ViewData["Name"] = User.Identity.Name;
+
+            ViewData["UID"] = _userManager.GetUserId(User);
             return View(new UserTask());
         }
         //Add Task Post
         [HttpPost]
         public IActionResult AddTask(UserTask u)
         {
+            ViewData["Name"] = User.Identity.Name;
+
+            ViewData["UID"] = _userManager.GetUserId(User);
             u.UserId = int.Parse(_userManager.GetUserId(User));
 
             result = dal.AddTask(u);
             
-            return View("Index");
+            return RedirectToAction("Index", u);
         }
 
         //Edit Task Get

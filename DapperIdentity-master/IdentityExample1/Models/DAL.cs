@@ -24,5 +24,12 @@ namespace IdentityExample1.Models
 
             return conn.Execute(addQuery, u);
         }
+
+        public IEnumerable<UserTask> GetTasks(int id)
+        {
+            string queryString = "SELECT * FROM IdentityTasks WHERE UserId = @val";
+
+            return conn.Query<UserTask>(queryString, new { val = id });
+        }
     }
 }

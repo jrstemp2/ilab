@@ -1,12 +1,21 @@
-﻿
+﻿@model UserTask
 @{
     ViewData["Title"] = "Index";
+    List<UserTask> utasks = (List<UserTask>)ViewData["UTasks"];
 }
 
 @if (@ViewData["Name"] != null)
 {
     <h1>Hello, Let's Review Your Tasks!</h1>
     <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
+
+    foreach(UserTask t in utasks)
+    {
+        <p>@t.TaskDescription</p>
+        <p>@t.DueDate</p>
+        <p>@t.TaskStatus</p>
+    }
+
 }
 else
 {
