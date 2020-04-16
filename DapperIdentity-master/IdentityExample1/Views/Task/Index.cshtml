@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (@ViewData["Name"] != null)
+{
+    <h1>Hello, Let's Review Your Tasks!</h1>
+    <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
+}
+else
+{
+    <h1>Please Login to view this page!</h1>
+}
+
+
