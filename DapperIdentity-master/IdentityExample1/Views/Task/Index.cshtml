@@ -6,15 +6,32 @@
 
 @if (@ViewData["Name"] != null)
 {
-    <h1>Hello, Let's Review Your Tasks!</h1>
+    <h1>Hello @ViewData["Name"], Let's Review Your Tasks!</h1>
     <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
 
-    foreach(UserTask t in utasks)
-    {
-        <p>@t.TaskDescription</p>
-        <p>@t.DueDate</p>
-        <p>@t.TaskStatus</p>
-    }
+    
+    <table class="table-hover">
+        <tr>
+            <th>Task Description</th>
+            <th>Task Due Date</th>
+            <th>Task Status</th>
+            <th>Edit Task</th>
+            <th>Delete Task</th>
+        </tr>
+        @foreach (UserTask t in utasks)
+        {
+            <tr>
+                <td>@t.TaskDescription</td>
+                <td>@t.DueDate</td>
+                <td>@t.TaskStatus</td>
+                
+                <td><a href="#" class="btn btn-dark">Edit Task</a></td>
+                <td><a href="/Task/Delete/@t.Id" class="btn btn-dark">Delete Task</a></td>
+
+            </tr>
+        }
+    </table>
+    
 
 }
 else

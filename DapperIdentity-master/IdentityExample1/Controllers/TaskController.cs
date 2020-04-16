@@ -86,5 +86,10 @@ namespace IdentityExample1.Controllers
         //Mark Task Complete
 
         //Delete Task
+        public IActionResult Delete(int id)
+        {
+            int result = dal.DeleteTaskById(id);
+            return RedirectToAction("Index");
+        }
     }
 }

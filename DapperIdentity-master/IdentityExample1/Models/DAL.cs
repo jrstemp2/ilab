@@ -31,5 +31,11 @@ namespace IdentityExample1.Models
 
             return conn.Query<UserTask>(queryString, new { val = id });
         }
+
+        public int DeleteTaskById(int id)
+        {
+            string deleteString = "DELETE FROM IdentityTasks WHERE Id = @val";
+            return conn.Execute(deleteString, new { val = id });
+        }
     }
 }
