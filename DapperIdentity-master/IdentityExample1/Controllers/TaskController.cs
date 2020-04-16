@@ -17,6 +17,7 @@ namespace IdentityExample1.Controllers
 {
     public class TaskController : Controller
     {
+        int result;
 
         private DAL dal;
 
@@ -54,9 +55,9 @@ namespace IdentityExample1.Controllers
         {
             u.UserId = int.Parse(_userManager.GetUserId(User));
 
-            int result = dal.AddTask(u);
-
-            return RedirectToAction("Index");
+            result = dal.AddTask(u);
+            
+            return View("Index");
         }
 
         //Edit Task Get

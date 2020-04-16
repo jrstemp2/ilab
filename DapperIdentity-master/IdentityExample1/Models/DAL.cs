@@ -10,6 +10,7 @@ namespace IdentityExample1.Models
     public class DAL
     {
         private SqlConnection conn;
+        
 
         public DAL(string connectionString)
         {
@@ -20,6 +21,7 @@ namespace IdentityExample1.Models
         {
             string addQuery = "INSERT INTO IdentityTasks (UserId, TaskDescription, DueDate, TaskStatus) ";
             addQuery += "VALUES(@UserId, @TaskDescription, @DueDate, @TaskStatus)";
+
             return conn.Execute(addQuery, u);
         }
     }
