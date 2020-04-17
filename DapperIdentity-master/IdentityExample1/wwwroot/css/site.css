@@ -95,5 +95,15 @@ div.form {
 
 
 
+div.md-form active-blue active-blue-2 mb-3 mt-0, input {
+    display: inline-block;
+    align-items: center;
+
+}
+
+#form {
+    align-items: center;
+}
+
 
 

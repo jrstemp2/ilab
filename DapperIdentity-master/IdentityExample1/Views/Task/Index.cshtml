@@ -6,6 +6,15 @@
 
 @if (@ViewData["UID"] != null)
 {
+
+    <div class="d-flex justify-content-center">
+        <form asp-controller="Task" asp-action="Search" method="post" >
+            <input type="hidden" id="@ViewData[" UID"]" name="userid" />
+            <input type="search" id="Search" name="Search" placeholder="Search" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
+    </div>
+
     <h1>Hello @ViewData["Name"], Let's Review Your Tasks!</h1>
     <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
 
@@ -33,8 +42,8 @@
         }
 
         <td><input type="button" value="Complete" onclick="location.href='@Url.Action("CompleteTask", "Task", new { id = t.Id })'" class="btn btn-dark" /></td>
-        <td><a href="/Task/Delete/@t.Id" class="btn btn-dark">Delete Task</a></td>
-        <td><a href="/Task/EditForm/@t.Id" class="btn btn-dark">Edit Task</a></td>
+        <td><a href="/Task/Delete/@t.Id" class="btn btn-dark" onclick="return confirm('Are you sure you want to delete @t.TaskDescription ?')">Delete Task</a></td>
+        <td><a href="/Task/Edit/@t.Id" class="btn btn-dark">Edit Task</a></td>
 
     </tr>
         }

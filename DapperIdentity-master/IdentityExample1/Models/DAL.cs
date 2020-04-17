@@ -67,5 +67,12 @@ namespace IdentityExample1.Models
             string editString = "UPDATE IdentityTasks SET TaskDescription = @TaskDescription, DueDate = @DueDate WHERE Id = @Id";
             return conn.Execute(editString, t);
         }
+
+        public IEnumerable<UserTask> GetSearchResults(string search, string userid)
+        {
+            string queryString = "Select * FROM IdentityTasks WHERE UserID = @userid AND TaskDescription LIKE '%' +@search + '%'";
+
+            return conn.Query<UserTask>(queryString, new { search = search, userid = userid });
+        }
     }
 }

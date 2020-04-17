@@ -94,6 +94,12 @@ namespace IdentityExample1.Controllers
         }
 
         //Delete Task
+        //[HttpGet]
+        //public IActionResult Delete(int id)
+        //{
+        //    UserTask t = dal.GetTaskById(id);
+        //    return View(t);
+        //}
         public IActionResult Delete(int id)
         {
             int result = dal.DeleteTaskById(id);
@@ -101,7 +107,7 @@ namespace IdentityExample1.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditForm(int id)
+        public IActionResult Edit(int id)
         {
             UserTask t = dal.GetTaskById(id);
             return View(t);
@@ -110,7 +116,17 @@ namespace IdentityExample1.Controllers
         public IActionResult Edit(UserTask t)
         {
             int result = dal.EditTaskById(t);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", t);
+        }
+
+        public IActionResult Search(string search)
+        {
+            ViewData["Name"] = User.Identity.Name;
+            ViewData["UID"] = _userManager.GetUserId(User);
+            IEnumerable<UserTask> results = dal.GetSearchResults(search, (string)ViewData["UID"]);
+            ViewData["Results"] = results;
+
+            return View();
         }
     }
 }

@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+    IEnumerable<UserTask> Results = (IEnumerable<UserTask>)ViewData["Results"];
+}
+
+<h1>Search Results</h1>
+@if (@ViewData["UID"] != null)
+{
+    <h1>Hello @ViewData["Name"], Here are your search results</h1>
+    <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
+
+
+    <table class="table-hover">
+        <tr>
+            <th>Task Description</th>
+            <th>Task Due Date</th>
+            <th>Task Status</th>
+            <th>Edit Task</th>
+            <th>Delete Task</th>
+        </tr>
+        @foreach (UserTask t in Results)
+        {
+        <tr>
+            <td>@t.TaskDescription</td>
+            <td>@t.DueDate</td>
+            @if (t.TaskStatus == 0)
+            {
+            <td>Incomplete</td>
+            }
+            else
+            {
+            <td>Complete</td>
+            }
+
+
+
+            <td><input type="button" value="Complete" onclick="location.href='@Url.Action(" CompleteTask", "Task" , new { id=t.Id })'" /></td>
+            <td><a href="/Task/Delete/@t.Id" class="btn btn-dark">Delete Task</a></td>
+
+        </tr>
+        }
+    </table>
+
+
+}
+else
+{
+    <h1>Please Login to view this page!</h1>
+}
