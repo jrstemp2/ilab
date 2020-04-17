@@ -6,21 +6,26 @@
 <h1>Let's Add a Task</h1>
 
 
-<form asp-controller="Task" asp-action="AddTask" method="post">
 
-	@Html.LabelFor(m => m.TaskDescription)
-	<textarea asp-for="TaskDescription" rows="10" cols="10" required>@Model.TaskDescription</textarea>
-	<br />
-	@Html.LabelFor(m => m.DueDate)
-	<input type="date" asp-for="DueDate"/>
-	<br />
-	@Html.LabelFor(m => m.TaskStatus)
-	<select asp-for="TaskStatus">
-		<option value="0">0</option>
-		<option value="1">1</option>
-	</select>
-	<input type="submit" value="Submit Task" />
-</form>
+<div class="form">
+	<form asp-controller="Task" asp-action="AddTask" class="px-4 py-3" method="post">
+		<div class="form-group">
+			<label>Task Description</label>
+			<textarea id="add" class="md-textarea form-control" rows="3" asp-for="TaskDescription" required>@Model.TaskDescription</textarea>
+		</div>
+		<div class="form-group">
+			<label>Due Date</label>
+			<input id="add" type="date" asp-for="DueDate" />
+		</div>
+
+
+
+
+		<input type="submit" value="Submit Task" />
+	</form>
+</div>
+
+
 
 
 

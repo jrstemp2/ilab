@@ -1,0 +1,22 @@
+﻿@model UserTask
+@{
+    ViewData["Title"] = "EditForm";
+}
+
+<h1>Edit Your Task</h1>
+<form asp-controller="Task" asp-action="AddTask" method="post">
+
+    @Html.LabelFor(m => m.TaskDescription)
+    <textarea asp-for="TaskDescription" rows="10" cols="10" required>@Model.TaskDescription</textarea>
+    <br />
+    @Html.LabelFor(m => m.DueDate)
+    <input type="date" asp-for="DueDate" />
+    <br />
+    @Html.LabelFor(m => m.TaskStatus)
+    <select asp-for="TaskStatus">
+        <option value="0">Incomplete</option>
+        <option value="1">Complete</option>
+    </select>
+    <input type="submit" value="Submit Task" />
+</form>
+

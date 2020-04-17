@@ -37,5 +37,21 @@ namespace IdentityExample1.Models
             string deleteString = "DELETE FROM IdentityTasks WHERE Id = @val";
             return conn.Execute(deleteString, new { val = id });
         }
+
+        public void CompleteTask(int id)
+        {
+
+            string queryString = "Update IdentityTasks SET TaskStatus = '1' WHERE id = @id";
+            conn.QueryFirstOrDefault<UserTask>(queryString, new { id = id });
+
+
+        }
+
+        public IEnumerable<UserTask> GetAllTasksById(string userid)
+        {
+
+            string queryString = "SELECT * FROM IdentityTasks WHERE UserId = @userid";
+            return conn.Query<UserTask>(queryString, new { userid = userid });
+        }
     }
 }

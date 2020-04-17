@@ -4,7 +4,7 @@
     List<UserTask> utasks = (List<UserTask>)ViewData["UTasks"];
 }
 
-@if (@ViewData["Name"] != null)
+@if (@ViewData["UID"] != null)
 {
     <h1>Hello @ViewData["Name"], Let's Review Your Tasks!</h1>
     <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
@@ -23,9 +23,18 @@
             <tr>
                 <td>@t.TaskDescription</td>
                 <td>@t.DueDate</td>
-                <td>@t.TaskStatus</td>
-                
-                <td><a href="#" class="btn btn-dark">Edit Task</a></td>
+                @if(t.TaskStatus == 0)
+                {
+                    <td>Incomplete</td>
+                }
+                else
+                {
+                    <td>Complete</td>
+                }
+
+
+
+                <td><input type="button" value="Complete" onclick="location.href='@Url.Action("CompleteTask", "Task", new { id = t.Id })'" /></td>
                 <td><a href="/Task/Delete/@t.Id" class="btn btn-dark">Delete Task</a></td>
 
             </tr>
