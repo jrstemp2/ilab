@@ -64,7 +64,7 @@ namespace IdentityExample1.Models
 
         public int EditTaskById(UserTask t)
         {
-            string editString = "UPDATE IdentityTasks SET UserId = @UserId, TaskDescription = @TaskDescription, DueDate = @DueDate TaskStatus = @TaskStatusWHERE Id = @Id";
+            string editString = "UPDATE IdentityTasks SET TaskDescription = @TaskDescription, DueDate = @DueDate WHERE Id = @Id";
             return conn.Execute(editString, t);
         }
     }

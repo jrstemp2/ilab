@@ -107,7 +107,7 @@ namespace IdentityExample1.Controllers
             return View(t);
         }
         [HttpPost]
-        private IActionResult Edit(UserTask t)
+        public IActionResult Edit(UserTask t)
         {
             int result = dal.EditTaskById(t);
             return RedirectToAction("Index");
