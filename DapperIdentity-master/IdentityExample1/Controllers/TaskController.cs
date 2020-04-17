@@ -90,7 +90,7 @@ namespace IdentityExample1.Controllers
             ViewData["UID"] = _userManager.GetUserId(User);
             IEnumerable<UserTask> utasks = dal.GetAllTasksById((string)ViewData["UID"]);
             ViewData["Tasks"] = utasks;
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         //Delete Task

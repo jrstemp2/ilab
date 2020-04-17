@@ -34,7 +34,7 @@
 
 
 
-                <td><input type="button" value="Complete" onclick="location.href='@Url.Action("CompleteTask", "Task", new { id = t.Id })'" /></td>
+                <td><input type="button" value="Complete" onclick="location.href='@Url.Action("CompleteTask", "Task", new { id = t.Id })'" class="btn btn-dark" /></td>
                 <td><a href="/Task/Delete/@t.Id" class="btn btn-dark">Delete Task</a></td>
 
             </tr>

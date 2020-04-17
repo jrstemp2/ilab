@@ -38,11 +38,12 @@ namespace IdentityExample1.Models
             return conn.Execute(deleteString, new { val = id });
         }
 
-        public void CompleteTask(int id)
+        public int CompleteTask(int id)
         {
 
             string queryString = "Update IdentityTasks SET TaskStatus = '1' WHERE id = @id";
-            conn.QueryFirstOrDefault<UserTask>(queryString, new { id = id });
+            
+            return conn.Execute(queryString, new { id = id });
 
 
         }

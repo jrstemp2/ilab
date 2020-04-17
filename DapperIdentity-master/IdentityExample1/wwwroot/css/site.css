@@ -82,14 +82,18 @@ input {
     display: table-row; 
 }
 
-div.form {
-    display: block;
-    text-align: center;
 
-}
-form {
+
+div.form {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
+    align-items: center;
+    border: thin black solid;
 }
+
+
+
+
+
