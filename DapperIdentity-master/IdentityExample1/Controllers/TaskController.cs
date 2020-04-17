@@ -39,10 +39,10 @@ namespace IdentityExample1.Controllers
         public IActionResult Index()
         {
             ViewData["Name"] = User.Identity.Name;
-            
+
             ViewData["UID"] = _userManager.GetUserId(User);
 
-            
+
 
             if (ViewData["Name"] != null)
             {
@@ -77,7 +77,7 @@ namespace IdentityExample1.Controllers
             u.TaskStatus = 0;
 
             result = dal.AddTask(u);
-            
+
             return RedirectToAction("Index", u);
         }
 
@@ -127,6 +127,27 @@ namespace IdentityExample1.Controllers
             ViewData["Results"] = results;
 
             return View();
+        }
+
+        public IActionResult Sort()
+        {
+            ViewData["Name"] = User.Identity.Name;
+
+            ViewData["UID"] = _userManager.GetUserId(User);
+
+
+
+            if (ViewData["Name"] != null)
+            {
+                int uId = int.Parse(_userManager.GetUserId(User));
+                IEnumerable<UserTask> utasks = dal.GetAllTasksByIdDesc(uId);
+                ViewData["UTasks"] = utasks;
+                return View("Index");
+            }
+            else
+            {
+                return View("Index");
+            }
         }
     }
 }

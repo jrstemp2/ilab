@@ -30,11 +30,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        
-                        
+
+
+
                     </ul>
                 </div>
                 @await Html.PartialAsync("_LoginPartial")
+                @if (@ViewData["UID"] != null)
+                {
+                    <div class="d-flex float-lg-right">
+                        <form asp-controller="Task" asp-action="Search" method="post">
+                            <input type="hidden" id="@ViewData[" UID"]" name="userid" />
+                            <input type="search" id="Search" name="Search" placeholder="Search" />
+                            <input type="submit" value="Search" class="btn btn-primary" />
+                        </form>
+                    </div>
+                       
+                }
+
+                
             </div>
         </nav>
     </header>

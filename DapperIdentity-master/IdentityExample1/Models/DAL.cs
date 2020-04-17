@@ -74,5 +74,12 @@ namespace IdentityExample1.Models
 
             return conn.Query<UserTask>(queryString, new { search = search, userid = userid });
         }
+
+        public IEnumerable<UserTask> GetAllTasksByIdDesc(int userid)
+        {
+
+            string queryString = "SELECT * FROM IdentityTasks WHERE UserId = @userid ORDER BY DueDate Desc";
+            return conn.Query<UserTask>(queryString, new { userid = userid });
+        }
     }
 }

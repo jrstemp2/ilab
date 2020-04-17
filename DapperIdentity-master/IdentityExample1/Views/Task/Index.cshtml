@@ -7,16 +7,20 @@
 @if (@ViewData["UID"] != null)
 {
 
-    <div class="d-flex justify-content-center">
+    @*<div class="d-flex float-lg-right">
         <form asp-controller="Task" asp-action="Search" method="post" >
             <input type="hidden" id="@ViewData[" UID"]" name="userid" />
             <input type="search" id="Search" name="Search" placeholder="Search" />
             <input type="submit" value="Search" class="btn btn-primary" />
         </form>
-    </div>
+    </div>*@
 
     <h1>Hello @ViewData["Name"], Let's Review Your Tasks!</h1>
-    <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
+    <div class="form-group">
+        <a href="/Task/AddForm" class="btn btn-primary">Add a Task</a>
+        <a href="/Task/Sort" class="btn btn-primary">Order By Farthest Date</a>
+        <a href="/Task/Index" class="btn btn-primary">Order By Closest Date</a>
+    </div>
 
     
     <table class="table-hover">
@@ -24,8 +28,9 @@
             <th>Task Description</th>
             <th>Task Due Date</th>
             <th>Task Status</th>
-            <th>Edit Task</th>
+            <th>Update Status</th>
             <th>Delete Task</th>
+            <th>Edit Task Details</th>
         </tr>
         @foreach (UserTask t in utasks)
         {
