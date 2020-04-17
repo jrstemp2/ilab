@@ -101,9 +101,16 @@ namespace IdentityExample1.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditForm()
+        public IActionResult EditForm(int id)
         {
-            return View();
+            UserTask t = dal.GetTaskById(id);
+            return View(t);
+        }
+        [HttpPost]
+        private IActionResult Edit(UserTask t)
+        {
+            int result = dal.EditTaskById(t);
+            return RedirectToAction("Index");
         }
     }
 }

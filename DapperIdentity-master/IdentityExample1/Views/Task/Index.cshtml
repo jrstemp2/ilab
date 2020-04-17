@@ -20,24 +20,23 @@
         </tr>
         @foreach (UserTask t in utasks)
         {
-            <tr>
-                <td>@t.TaskDescription</td>
-                <td>@t.DueDate</td>
-                @if(t.TaskStatus == 0)
-                {
-                    <td>Incomplete</td>
-                }
-                else
-                {
-                    <td>Complete</td>
-                }
+    <tr>
+        <td>@t.TaskDescription</td>
+        <td>@t.DueDate</td>
+        @if (t.TaskStatus == 0)
+        {
+            <td>Incomplete</td>
+        }
+        else
+        {
+            <td>Complete</td>
+        }
 
+        <td><input type="button" value="Complete" onclick="location.href='@Url.Action("CompleteTask", "Task", new { id = t.Id })'" class="btn btn-dark" /></td>
+        <td><a href="/Task/Delete/@t.Id" class="btn btn-dark">Delete Task</a></td>
+        <td><a href="/Task/EditForm/@t.Id" class="btn btn-dark">Edit Task</a></td>
 
-
-                <td><input type="button" value="Complete" onclick="location.href='@Url.Action("CompleteTask", "Task", new { id = t.Id })'" class="btn btn-dark" /></td>
-                <td><a href="/Task/Delete/@t.Id" class="btn btn-dark">Delete Task</a></td>
-
-            </tr>
+    </tr>
         }
     </table>
     

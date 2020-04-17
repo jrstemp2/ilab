@@ -54,5 +54,18 @@ namespace IdentityExample1.Models
             string queryString = "SELECT * FROM IdentityTasks WHERE UserId = @userid";
             return conn.Query<UserTask>(queryString, new { userid = userid });
         }
+
+        public UserTask GetTaskById(int id)
+        {
+
+            string queryString = "SELECT * FROM IdentityTasks WHERE Id = @val";
+            return conn.QueryFirstOrDefault<UserTask>(queryString, new { val = id });
+        }
+
+        public int EditTaskById(UserTask t)
+        {
+            string editString = "UPDATE IdentityTasks SET UserId = @UserId, TaskDescription = @TaskDescription, DueDate = @DueDate TaskStatus = @TaskStatusWHERE Id = @Id";
+            return conn.Execute(editString, t);
+        }
     }
 }
